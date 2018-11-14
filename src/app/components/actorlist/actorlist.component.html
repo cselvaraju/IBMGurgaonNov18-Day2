@@ -1,0 +1,62 @@
+<div>
+  <button (click)="toggleList()">{{btnText}}</button>
+</div>
+<div *ngIf="showFlag">
+  <h4>Actor List</h4>
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Name</th>
+      <th>City</th>
+      <th>Actions</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let actor of actors; index as n"
+          (dblclick)="editActor(n)"
+          (keyup)="keyUp($event, n)"
+      >
+        <td>
+          <span *ngIf="n !== selectedIndex">
+            {{actor.name}}
+          </span>
+          <span *ngIf="n === selectedIndex">
+            <input type="text" [(ngModel)]="actor.name">
+          </span>
+        </td>
+        <td>
+          <span *ngIf="n !== selectedIndex">
+            {{actor.city}}
+          </span>
+          <span *ngIf="n === selectedIndex">
+            <input type="text" [(ngModel)]="actor.city">
+          </span>
+        </td>
+        <td>
+          <span *ngIf="n !== selectedIndex">
+            <button type="button" 
+                    class="btn btn-primary"
+                    (click)="editActor(n)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <button type="button" 
+                    class="btn btn-danger" 
+                    (click)="deleteActor(n)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </span>
+          <span *ngIf="n === selectedIndex">
+            <button type="button" 
+                class="btn btn-secondary"
+                (click)="saveActor(n)">
+              <i class="fa fa-save"></i>
+            </button>
+            <button type="button" 
+                    class="btn btn-secondary" 
+                    (click)="cancelEdit(n)">
+              <i class="fa fa-undo"></i>
+            </button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

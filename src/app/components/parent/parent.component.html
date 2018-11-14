@@ -1,0 +1,14 @@
+<div class="container">
+  <h4>Parent Component</h4>
+  <div>
+    Parent data: {{parentData}}
+    <br><br>
+    Data to send to child: {{parent2childData}}
+    <br><br>
+    Child says favourite country is {{favCountry}}
+  </div>
+  <app-child 
+    childData="{{parent2childData}}"
+    favActor="Steven Seagal"
+    (childEvent)="handleEvent($event)"></app-child>
+</div>
